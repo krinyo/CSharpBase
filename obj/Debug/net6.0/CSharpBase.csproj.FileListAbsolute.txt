@@ -1,0 +1,15 @@
+D:\c#solutions\CSharpBase\bin\Debug\net6.0\CSharpBase.exe
+D:\c#solutions\CSharpBase\bin\Debug\net6.0\CSharpBase.deps.json
+D:\c#solutions\CSharpBase\bin\Debug\net6.0\CSharpBase.runtimeconfig.json
+D:\c#solutions\CSharpBase\bin\Debug\net6.0\CSharpBase.dll
+D:\c#solutions\CSharpBase\bin\Debug\net6.0\CSharpBase.pdb
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.csproj.AssemblyReference.cache
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.AssemblyInfoInputs.cache
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.AssemblyInfo.cs
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.csproj.CoreCompileInputs.cache
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.dll
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\refint\CSharpBase.dll
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.pdb
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\CSharpBase.genruntimeconfig.cache
+D:\c#solutions\CSharpBase\obj\Debug\net6.0\ref\CSharpBase.dll
