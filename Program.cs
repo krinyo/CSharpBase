@@ -359,7 +359,7 @@ namespace CSharpBase
 
         public static void Main(string[] args)
         {
-
+            Console.WriteLine("test");
             Console.ReadLine();
         }
     }

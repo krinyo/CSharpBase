@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "RxEY8qtGhA2obG2jBYcDxzVd/PBHBdkFpr/ttBY4M+NzwQbDLNgNa5p2gMkjxMODOls1WcDaoL8yafAy/vTo3Q==",
+  "dgSpecHash": "wmKNoNEHG6u9Yixg3hs9ZHQHswTb4scqO27aYwfUz+kbJfWCw28j1w5mL7xmJLToTo2h2J2sJmPwVthXE2R32A==",
   "success": true,
-  "projectFilePath": "D:\\c#solutions\\CSharpBase\\CSharpBase.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\c#solutions\\BAZA\\CSharpBase\\CSharpBase.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\krea\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\krea\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\krea\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\krea\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
   "logs": []
 }
