@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace CSharpBase
 {
+
     #region TYPES
     public class Types
     {
@@ -280,8 +282,7 @@ namespace CSharpBase
     }
     #endregion
 
-
-    #region DELEGATES AND EVENTS
+    #region DELEGATES AND EVENTS*
     public class DelegatesAndEvents
     {
         // Делегат - это тип, который безопасно инкапсулирует метод
@@ -354,15 +355,296 @@ namespace CSharpBase
 
     #endregion
 
+    #region LINQ EXAMPLES
+    //using System.Linq;
+    public class LinqExamples
+    {
+
+        // LINQ Query
+        public void LinqQuery(int[] numbers)
+        {
+            // LINQ query that sorts the numbers in ascending order
+            var sortedNumbers = from number in numbers
+                                orderby number
+                                select number;
+
+            // Output the sorted numbers
+            foreach (var number in sortedNumbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
+
+        // LINQ Method Syntax
+        public void LinqMethodSyntax(int[] numbers)
+        {
+            // Use LINQ method syntax to sort the numbers in ascending order
+            var sortedNumbers = numbers.OrderBy(number => number);
+
+            // Output the sorted numbers
+            foreach (var number in sortedNumbers)
+            {
+                Console.WriteLine(number);
+            }
+        }
+        /*
+        // 'Where' filters the collection based on a condition
+        var evenNumbers = numbers.Where(n => n % 2 == 0);
+
+        // 'Select' projects each element of a sequence into a new form
+        var squares = numbers.Select(n => n * n);
+
+        // 'OrderBy' sorts the elements of a sequence in ascending order
+        var orderedNumbers = numbers.OrderBy(n => n);
+
+        // 'OrderByDescending' sorts the elements of a sequence in descending order
+        var orderedNumbersDesc = numbers.OrderByDescending(n => n);
+
+        // 'First' returns the first element of a sequence
+        var firstNumber = numbers.First();
+
+        // 'FirstOrDefault' returns the first element of a sequence, or a default value if no element is found
+        var firstOrDefaultNumber = numbers.FirstOrDefault();
+
+        // 'Single' returns the only element of a sequence, and throws an exception if there is not exactly one element in the sequence
+        var singleNumber = numbers.Single(n => n == 5);
+
+        // 'SingleOrDefault' returns the only element of a sequence, or a default value if no element is found. This method throws an exception if there is more than one element in the sequence
+        var singleOrDefaultNumber = numbers.SingleOrDefault(n => n == 5);
+
+        // 'Count' returns the number of elements in a sequence
+        var count = numbers.Count();
+
+        // 'Any' checks if any elements in a sequence satisfy a condition
+        var hasEvenNumbers = numbers.Any(n => n % 2 == 0);
+
+        // 'All' checks if all elements in a sequence satisfy a condition
+        var allEvenNumbers = numbers.All(n => n % 2 == 0);
+
+        // 'Contains' checks if a sequence contains a specified element
+        var containsFive = numbers.Contains(5);
+
+        // 'Aggregate' applies a function to each element of a sequence and returns the final result
+        var product = numbers.Aggregate((a, b) => a * b);
+
+        // 'Sum' calculates the sum of a sequence of numeric values
+        var sum = numbers.Sum();
+
+        // 'Average' calculates the average of a sequence of numeric values
+        var average = numbers.Average();
+
+        // 'Max' returns the maximum value in a sequence of numeric values
+        var max = numbers.Max();
+
+        // 'Min' returns the minimum value in a sequence of numeric values
+        var min = numbers.Min();
+
+        // 'GroupBy' groups the elements of a sequence according to a specified key selector function
+        var wordGroups = words.GroupBy(w => w.First());
+        */
+    }
+    #endregion
+
+    #region ASYNC PROGRAMMING*
+    public class AsyncProgramming
+    {
+        // Asynchronous method to get the content from a URL
+        public async Task<string> FetchDataFromUrlAsync(string url)
+        {
+            // HttpClient is used to send HTTP requests and receive HTTP responses
+            using (HttpClient client = new HttpClient())
+            {
+                // Send a GET request to the specified Uri and return the response body as a string in an asynchronous operation
+                string result = await client.GetStringAsync(url);
+
+                return result;
+            }
+        }
+
+        public async Task RunAsync()
+        {
+            try
+            {
+                // Call the FetchDataFromUrlAsync method asynchronously and wait for the result
+                string result = await FetchDataFromUrlAsync("https://example.com");
+
+                Console.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                // Handle any exceptions that occurred during the execution of the FetchDataFromUrlAsync method
+                Console.WriteLine($"An error occurred: {e.Message}");
+            }
+        }
+    }
+    #endregion *
+
+    #region ORM Entity Framework
+    public class User
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        // Другие свойства...
+    }
+    public class MyDbContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("connectionstring");
+        }
+        public static void GetUsers()
+        {
+            using (var context = new MyDbContext())
+            {
+                // LINQ запрос для получения всех пользователей
+                var users = context.Users.ToList();
+
+                foreach (var user in users)
+                {
+                    Console.WriteLine($"User ID: {user.Id}, Name: {user.Name}");
+                }
+            }
+        }
+    }
+
+    #endregion
+
+    #region NETWORK(basebase)
+    /*
+         public static void Main()
+    {
+        TcpListener server = null;
+        try
+        {
+            // Set the TcpListener on port 13000.
+            Int32 port = 13000;
+            IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+
+            // TcpListener server = new TcpListener(port);
+            server = new TcpListener(localAddr, port);
+
+            // Start listening for client requests.
+            server.Start();
+
+            // Buffer for reading data
+            Byte[] bytes = new Byte[256];
+            String data = null;
+
+            // Enter the listening loop.
+            while(true)
+            {
+                Console.Write("Waiting for a connection... ");
+
+                // Perform a blocking call to accept requests.
+                TcpClient client = server.AcceptTcpClient();            
+                Console.WriteLine("Connected!");
+
+                data = null;
+
+                // Get a stream object for reading and writing
+                NetworkStream stream = client.GetStream();
+
+                int i;
+
+                // Loop to receive all the data sent by the client.
+                while((i = stream.Read(bytes, 0, bytes.Length))!=0)
+                {   
+                    // Translate data bytes to a ASCII string.
+                    data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                    Console.WriteLine("Received: {0}", data);
+
+                    // Process the data sent by the client.
+                    data = data.ToUpper();
+
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+
+                    // Send back a response.
+                    stream.Write(msg, 0, msg.Length);
+                    Console.WriteLine("Sent: {0}", data);            
+                }
+
+                // Shutdown and end connection
+                client.Close();
+            }
+        }
+        catch(SocketException e)
+        {
+            Console.WriteLine("SocketException: {0}", e);
+        }
+        finally
+        {
+           // Stop listening for new clients.
+           server.Stop();
+        }
+
+        Console.WriteLine("\nHit enter to continue...");
+        Console.Read();
+    }  
+     */
+    #endregion
+
+    #region RabbitMQ(example of networking)*
+    /*
+    public static void Main()
+    {
+        var factory = new ConnectionFactory() { HostName = "localhost" };
+        using (var connection = factory.CreateConnection())
+        using (var channel = connection.CreateModel())
+        {
+            channel.QueueDeclare(queue: "hello",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            string message = "Hello World!";
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: "",
+                                 routingKey: "hello",
+                                 basicProperties: null,
+                                 body: body);
+            Console.WriteLine(" [x] Sent {0}", message);
+        }
+    }*/
+    #endregion
+
+    #region Tasks of multithreading and parallelism.
+    /*
+        using System;
+        using System.Threading.Tasks;
+
+        class Program
+        {
+            static void Main()
+            {
+                // Создание и запуск двух задач, которые выполняются параллельно
+                Task task1 = Task.Run(() => DoWork(1));
+                Task task2 = Task.Run(() => DoWork(2));
+
+                // Ожидание завершения обеих задач
+                Task.WaitAll(task1, task2);
+            }
+
+            static void DoWork(int taskNumber)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine($"Task {taskNumber} is working");
+                    Task.Delay(1000).Wait(); // Имитация работы
+                }
+            }
+        }
+
+    */
+    #endregion
     public class Program
     {
 
         public static void Main(string[] args)
         {
-            Console.WriteLine("test");
             Console.ReadLine();
         }
     }
-
 }
-
